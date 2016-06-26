@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:hint="@string/main.hint.bill"
+            android:layout_weight="0.4"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:id="@+id/edt_total" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:text="@string/main.button.submit"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:id="@+id/btn_calculate"/>
+    </LinearLayout>
+
+    <!-- -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:hint="@string/main.hint.percentage"
+            android:layout_weight="0.4"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:id="@+id/edt_percentage" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/main.button.increase"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:id="@+id/btn_increase"
+                android:layout_weight="0.5"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/main.button.decrease"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:id="@+id/btn_decrease"
+                android:layout_weight="0.5"/>
+
+        </LinearLayout>
+    </LinearLayout>
+    <!-- -->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtTip"
+        android:padding="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:visibility="invisible"/>
+
+</LinearLayout>
