@@ -1,6 +1,7 @@
 package moizest89.com.tipcalc.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,8 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import moizest89.com.tipcalc.R;
+import moizest89.com.tipcalc.activities.TipDetailActivity;
+import moizest89.com.tipcalc.adapters.OnItemClickListener;
 import moizest89.com.tipcalc.adapters.TipAdapter;
 import moizest89.com.tipcalc.model.TipRecord;
 
@@ -23,7 +26,7 @@ import moizest89.com.tipcalc.model.TipRecord;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TipHistoryListFragment extends Fragment implements TipHistoryListFragmentListener{
+public class TipHistoryListFragment extends Fragment implements TipHistoryListFragmentListener, OnItemClickListener{
 
 
     public TipHistoryListFragment() {
@@ -58,7 +61,7 @@ public class TipHistoryListFragment extends Fragment implements TipHistoryListFr
 
     private void initAdapter(){
         if(this.adapter == null){
-            this.adapter = new TipAdapter(new ArrayList<TipRecord>(),getActivity().getApplicationContext());
+            this.adapter = new TipAdapter(this,getActivity().getApplicationContext());
         }
     }
 
@@ -70,5 +73,16 @@ public class TipHistoryListFragment extends Fragment implements TipHistoryListFr
     @Override
     public void clearList() {
         this.adapter.clear();
+    }
+
+    @Override
+    public void onItemClickListener(TipRecord tipRecord) {
+
+        Intent intent = new Intent(getActivity(), TipDetailActivity.class);
+        intent.putExtra(TipDetailActivity.TIP_KEY,tipRecord.getTip());
+        intent.putExtra(TipDetailActivity.BILL_TOTAL_KEY,tipRecord.getBill());
+        intent.putExtra(TipDetailActivity.DATA_KEY,tipRecord.getDateFormatted());
+        startActivity(intent);
+
     }
 }
