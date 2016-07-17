@@ -17,7 +17,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements LoginView{
 
 
     @Bind(R.id.toolbar)
@@ -35,6 +35,8 @@ public class LoginActivity extends AppCompatActivity {
     @Bind(R.id.btnSignUp)
     Button buttonSignUp;
 
+    private LoginPresenter mPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +49,10 @@ public class LoginActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
+        this.mPresenter = new LoginPresenterImpl(this);
+        mPresenter.checkForAuthenticatedUser();
+
+
     }
 
     @OnClick(R.id.btnSignIn)
@@ -56,9 +62,8 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_login, menu);
-        return true;
+        return false;
     }
 
     @Override
@@ -74,5 +79,73 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void enableInputs() {
+        setInputs(true);
+    }
+
+    @Override
+    public void desableInputs() {
+        setInputs(false);
+    }
+
+    @Override
+    public void showProgress() {
+        //
+    }
+
+    @Override
+    public void hideProgress() {
+        //
+    }
+
+
+    @OnClick(R.id.btnSignUp)
+    @Override
+    public void handleSignUp() {
+        mPresenter.registerNewUser(
+                this.inputEmail.getText().toString().trim(),
+                this.inputPassword.getText().toString()
+        );
+    }
+
+    @OnClick(R.id.btnSignIn)
+    @Override
+    public void handleSignIn() {
+        mPresenter.validateLogin(
+                this.inputEmail.getText().toString().trim(),
+                this.inputPassword.getText().toString()
+        );
+    }
+
+    @Override
+    public void navigateToMainScreen() {
+        //Create a new Intent
+    }
+
+    @Override
+    public void loginError(String error) {
+
+    }
+
+    @Override
+    public void newUserSuccess() {
+
+    }
+
+    @Override
+    public void newUserError(String error) {
+
+    }
+
+
+    private void setInputs(boolean enable){
+
+        this.inputEmail.setEnabled(enable);
+        this.inputPassword.setEnabled(enable);
+        this.buttonSignIn.setEnabled(enable);
+        this.buttonSignUp.setEnabled(enable);
     }
 }

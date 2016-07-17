@@ -1,4 +1,4 @@
-package com.moizest89.androidchat;
+package com.moizest89.androidchat.Domain;
 
 import com.firebase.client.AuthData;
 import com.firebase.client.DataSnapshot;
