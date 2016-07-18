@@ -5,7 +5,7 @@ package com.moizest89.androidchat.lib;
  */
 public class GreenRobotEventBus implements EventBus{
 
-    private org.greenrobot.eventbus.EventBus eventBus;
+    private de.greenrobot.event.EventBus eventBus;
 
 
     private final static class SingletonHolder{
@@ -17,7 +17,7 @@ public class GreenRobotEventBus implements EventBus{
     }
 
     public GreenRobotEventBus() {
-        this.eventBus = org.greenrobot.eventbus.EventBus.getDefault();
+        this.eventBus = de.greenrobot.event.EventBus.getDefault();
     }
 
     @Override

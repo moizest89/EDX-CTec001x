@@ -50,6 +50,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
 
 
         this.mPresenter = new LoginPresenterImpl(this);
+        this.mPresenter.onCreate();
         mPresenter.checkForAuthenticatedUser();
 
 
@@ -147,5 +148,12 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
         this.inputPassword.setEnabled(enable);
         this.buttonSignIn.setEnabled(enable);
         this.buttonSignUp.setEnabled(enable);
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        this.mPresenter.onDestroy();
+        super.onDestroy();
     }
 }
